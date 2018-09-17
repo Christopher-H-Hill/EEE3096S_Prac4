@@ -36,12 +36,10 @@ def timeClock():
 	hours=secs//(60*60)
 	min=(secs-hours*60*60)//60
 	seconds=secs%60
-	#print('{:02d}:{:02d}:{:02d}'.format(hours,min,seconds))
 	return '{:02d}:{:02d}:{:02d}'.format(hours,min,seconds)
 
 
 def sw1():
-	#startTime = time.time()
 	clear()
 	print("Time\t  Timer\t    Pot\t  Temp\tLight")
 	return time.time()
@@ -65,8 +63,6 @@ def printer():
 	return (str(strftime("%H:%M:%S",localtime()))+"  "+str(timeClock())+"  "+str(round((3.3*(mcp.read_adc(0))/1023),1))+"V  "+str(int(mcp.read_adc(2)//14.61428))+"C   "+str((mcp.read_adc(1)*100)/1023)+"%")
 
 
-#def getPot():
-
 
 switchSetup()
 startTime=time.time()
@@ -77,16 +73,10 @@ while True:
 	if (time.time()-tempTime1)>moniSpeed:
 		tempTime1=time.time()
 		print(printer())
-		#print(timeClock())
 	Digital_switch1 = GPIO.input(switch1)
         Digital_switch2 = GPIO.input(switch2)
         Digital_switch3 = GPIO.input(switch3)
         Digital_switch4 = GPIO.input(switch4)
-	#time.sleep(1)
-	#print(timeClock())
-	#print(moniSpeed)
-	#moniSpeed=sw2(moniSpeed) #run when sw2 is pressed
-	#tempTime = time.time()
 
 	if Digital_switch1==0:
 		startTime=sw1()
@@ -107,7 +97,7 @@ while True:
 			Digital_switch4 = GPIO.input(switch4)
 			if math.floor((time.time()-tempTime)*10)/10  == moniSpeed:
 				tempTime = time.time()
-				values.append(printer()) #add others in
+				values.append(printer())
 			if Digital_switch4 == 0:
 				sw4(values)
 				time.sleep(timer)
