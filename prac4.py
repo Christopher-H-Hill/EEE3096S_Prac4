@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+#Authors Christopher Hill and Max Gobel
 import RPi.GPIO as GPIO
 import time
 import os
